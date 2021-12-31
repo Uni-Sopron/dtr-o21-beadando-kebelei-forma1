@@ -1,4 +1,5 @@
 set tyre_compounds := soft medium hard;
+set lap_options := staying_on_track tyre_change;
 
 # sec
 param tyre_compounds_degradation :=
@@ -15,7 +16,7 @@ hard    40
 ;
 
 # laps
-param race_length := 60;
+param number_of_laps := 60;
 
 # sec
 param base_lap_time := 78.134;
