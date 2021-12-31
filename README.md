@@ -1,0 +1,1 @@
+# dtr-o21-beadando-kebelei-forma1
