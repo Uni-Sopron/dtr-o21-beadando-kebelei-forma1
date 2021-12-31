@@ -1,6 +1,7 @@
 # Default data
-set lap_options;
+param number_of_laps;
 set race_length := 1..number_of_laps;
+set lap_options;
 set tyre_compounds;
 
 param base_lap_time;
