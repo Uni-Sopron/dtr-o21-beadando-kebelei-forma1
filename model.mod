@@ -24,7 +24,7 @@ s.t. One_tyre_compound_in_each_lap{lap in race_length}:
 s.t. Tyre_change{lap in race_length2, tyre1 in tyre_compounds, tyre2 in tyre_compounds}:
 # If use[lap, tyre1] == 1 && use[lap+1, tyre2] == 1, then tyre_change[lap] = 1 and used_compound[tyre2] = 1;
 # If use[lap, tyre1] && use[lap+1, tyre2], then tyre_change[lap] + used_compound[tyre2] = 2;
-    tyre_change[lap] + used_compound[tyre2] <= 1 + M * ( 2 - use[lap, tyre1] - use[lap+1, tyre2]);
+    tyre_change[lap] + used_compound[tyre2] <= 2 + M * ( 2 - use[lap, tyre1] - use[lap+1, tyre2]);
 
 s.t. Minimum_tyre_compounds:
     sum{tyre in tyre_compounds} used_compound[tyre] >= minimum_number_of_different_tyre_compounds;
