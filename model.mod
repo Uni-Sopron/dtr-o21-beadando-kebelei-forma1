@@ -47,7 +47,7 @@ s.t. Giving_value_to_used_compound{
 ## If use[lap, tyre1] && use[lap+1, tyre2], then tyre_change[lap] = 1;
     used_compound[tyre2] 
     >= 
-    -1 + use[lap, tyre1] + use[lap+1, tyre2];
+    -1 + use[lap, tyre2] + use[lap+1, tyre2];
 
 s.t. Minimum_tyre_compounds:
     sum{tyre in tyre_compounds} used_compound[tyre] >= minimum_number_of_different_tyre_compounds;
