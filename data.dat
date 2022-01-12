@@ -9,7 +9,7 @@ hard    0.05
 
 # laps
 param tyre_compounds_life_time :=
-soft    20
+soft    19
 medium  30
 hard    40
 ;
