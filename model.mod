@@ -9,8 +9,6 @@ param tyre_compounds_degradation{tyre_compounds};
 param tyre_compounds_life_time{tyre_compounds};
 param tyre_compounds_base_lap_time{tyre_compounds};
 
-param M := 1000;
-
 # Variable
 var use{race_length, tyre_compounds} binary;
 var tyre_change{race_length} binary;
@@ -40,10 +38,10 @@ s.t. Max_tyre_compound_life_time{
     sum{lap in race_length: lap >= lap1 && lap < lap2} tyre_change[lap] 
     >=  
     -1 + use[lap1, tyre] + use[lap2, tyre];
-    
-s.t. Giving_value_to_used_compound{lap in race_length, tyre in tyre_compounds}:
-# If use[lap, tyre], then used_compound[tyre] = 1
-    used_compound[tyre] <= 1 + M * (1 - use[lap, tyre]);  
+
+s.t. Giving_value_to_used_compound{tyre in tyre_compounds}:
+# If sum{lap in race_length} use[lap, tyre] == 0, then used_compound[tyre] = 0
+    used_compound[tyre] <= sum{lap in race_length} use[lap, tyre]; 
 
 s.t. Minimum_tyre_compounds:
     sum{tyre in tyre_compounds} used_compound[tyre] >= minimum_number_of_different_tyre_compounds;
@@ -55,7 +53,7 @@ minimize Total_time:
 
 solve;
 printf "\nLaps:\nStart-";
-for{lap in race_length, tyre in tyre_compounds: use[lap, tyre] == 1}
+for{lap in race_length, tyre in tyre_compounds: use[lap, tyre]}
 {
     printf "%s-", tyre;
 }
