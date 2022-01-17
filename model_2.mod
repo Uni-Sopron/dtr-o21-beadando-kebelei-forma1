@@ -40,11 +40,11 @@ s.t. Max_tyre_compound_life_time{
     >=  
     -1 + use[lap1, tyre] + use[lap2, tyre];
 
-s.t. Giving_value_to_used_compound_1{tyre in tyre_compounds}:
+s.t. Add_value_to_used_compound_1{tyre in tyre_compounds}:
 # If sum{lap in laps} use[lap, tyre] == 0, then used_compound[tyre] = 0
     used_compound[tyre] <= sum{lap in laps} use[lap, tyre]; 
 
-s.t. Giving_value_to_used_compound_2{tyre in tyre_compounds}:
+s.t. Add_value_to_used_compound_2{tyre in tyre_compounds}:
 # If sum{lap in laps} use[lap, tyre] / laps >= 0, then used_compound[tyre] = 1
     used_compound[tyre] >= sum{lap in laps} use[lap, tyre] / number_of_laps;
 
@@ -62,7 +62,7 @@ s.t. Add_base_lap_and_tyre_change_time_to_lap_time{lap in laps, tyre in tyre_com
     tyre_compounds_base_lap_time[tyre] + tyre_change_time
     - M * (2 - use[lap, tyre] - tyre_change[lap-1]);
 
-s.t. Add_calculate_time_to_lap_time{lap in laps, tyre in tyre_compounds: lap != 1}:
+s.t. Add_calculated_time_to_lap_time{lap in laps, tyre in tyre_compounds: lap != 1}:
 # If use[lap, tyre], then lap_time[lap] >= tyre_compounds_base_lap_time[tyre] + time_loss_from_tyre_compounds_degradation[tyre]
     lap_time[lap] 
     >= 
