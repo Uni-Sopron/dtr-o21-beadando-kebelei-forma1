@@ -1,0 +1,6 @@
+# sec
+param time_loss_from_tyre_compounds_degradation :=
+soft    0.2
+medium  0.1
+hard    0.05
+;
