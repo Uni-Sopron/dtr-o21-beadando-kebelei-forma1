@@ -51,39 +51,35 @@ s.t. Add_value_to_used_compound_2{tyre in tyre_compounds}:
 s.t. Minimum_tyre_compounds:
     sum{tyre in tyre_compounds} used_compound[tyre] >= minimum_number_of_different_tyre_compounds;
 
-s.t. First_lap_time_1{lap in laps, tyre in tyre_compounds: lap == 1}:
+s.t. Base_lap_time{lap in laps, tyre in tyre_compounds}:
 # If use[lap, tyre], then lap_time[lap] >= tyre_compounds_base_lap_time[tyre]
-    lap_time[lap] >= tyre_compounds_base_lap_time[tyre] - M * (1 - use[lap, tyre]);
+    lap_time[lap] >= tyre_compounds_base_lap_time[tyre] * use[lap, tyre];
 
-s.t. Add_base_lap_and_tyre_change_time_to_lap_time{lap in laps, tyre in tyre_compounds: lap != 1}:
+s.t. Lap_time_by_tyre_change{lap in laps, tyre in tyre_compounds: lap != 1}:
 # If use[lap, tyre] && tyre_change[lap-1], then lap_time[lap] >= tyre_compounds_base_lap_time[tyre]
     lap_time[lap] 
     >= 
-    tyre_compounds_base_lap_time[tyre] + tyre_change_time
+    tyre_compounds_base_lap_time[tyre]
     - M * (2 - use[lap, tyre] - tyre_change[lap-1]);
 
-s.t. Add_calculated_time_to_lap_time{lap in laps, tyre in tyre_compounds: lap != 1}:
-# If use[lap, tyre], then lap_time[lap] >= tyre_compounds_base_lap_time[tyre] + time_loss_from_tyre_compounds_degradation[tyre]
+s.t. Lap_time_with_time_loss_from_tyre_compounds_degradation{lap in laps, tyre in tyre_compounds: lap != 1}:
+# If use[lap, tyre] == 1 && tyre_change[lap-1] == 0, 
+# then lap_time[lap] >= tyre_compounds_base_lap_time[tyre] + time_loss_from_tyre_compounds_degradation[tyre]
     lap_time[lap] 
     >= 
     lap_time[lap-1] + time_loss_from_tyre_compounds_degradation[tyre]
-    - M * (1 - use[lap, tyre]);
+    - M * (tyre_change[lap-1] + (1 - use[lap, tyre]));
 
 # Objective function
 minimize Total_time: 
-    sum{lap in laps} lap_time[lap];
+    sum{lap in laps} lap_time[lap]
+    + sum{lap in laps} tyre_change[lap] * tyre_change_time;
 
 solve;
 printf "\nLap tyres:\nStart-";
 for{lap in laps, tyre in tyre_compounds: use[lap, tyre]}
 {
     printf "%s-", tyre;
-}
-printf "Finish\n\n";
-printf "Lap times:\nStart-";
-for{lap in laps}
-{
-    printf "%.3f-", lap_time[lap];
 }
 printf "Finish\n\n";
 
