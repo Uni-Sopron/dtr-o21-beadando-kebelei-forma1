@@ -1,1 +1,1 @@
-param number_of_stage := 2;
+param number_of_stages := 3;
