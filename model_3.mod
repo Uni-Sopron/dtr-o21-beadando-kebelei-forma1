@@ -44,3 +44,16 @@ s.t. Calculate_lap_time{stage in stages, tyre in tyre_compounds}:
 
 minimize Total_time: 
     sum{stage in stages} stage_time[stage] + (number_of_stage - 1) * tyre_change_time;
+
+solve;
+printf "\nLap tyres:\nStart-";
+for{stage in stages, tyre in tyre_compounds: use[stage, tyre]}
+{
+    for {lap in 1..stage_length[stage]}
+    {
+        printf "%s-", tyre;
+    }
+}
+printf "Finish\n\n";
+
+end;
