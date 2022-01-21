@@ -1,5 +1,6 @@
 # Default data
-param number_of_stages;
+param number_of_tyre_changes;
+param number_of_stages := number_of_tyre_changes + 1;
 set stages := 1..number_of_stages;
 set tyre_compounds;
 
