@@ -10,9 +10,12 @@ The project simulates a Formula 1 inspired car race. There are three different m
 
 ```
 Lap tyres:
-Start-soft-soft-soft-soft-soft-soft-soft-soft-soft-soft-soft-soft-soft-soft-soft-soft-soft-soft-soft-soft-medium-medium-medium-medium-medium-medium-medium-medium-medium-medium-medium-medium-medium-medium-medium-medium-medium-medium-medium-medium-soft-soft-soft-soft-soft-soft-soft-soft-soft-soft-soft-soft-soft-soft-soft-soft-soft-soft-soft-soft-Finish
+Start-soft-soft-soft-hard-hard-hard-hard-hard-hard-hard-Finish
 
-Total time: 4742.58 second
+Laps where there is a tyre change:
+3
+
+Total time: 811.529 second
 ```
 
 </p>

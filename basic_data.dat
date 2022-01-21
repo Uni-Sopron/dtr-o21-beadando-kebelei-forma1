@@ -2,9 +2,9 @@ set tyre_compounds := soft medium hard;
 
 # laps
 param tyre_compounds_life_time :=
-soft    20
-medium  30
-hard    40
+soft    3
+medium  5
+hard    7
 ;
 
 # sec
@@ -15,7 +15,7 @@ hard    79.211
 ;
 
 # laps
-param number_of_laps := 60;
+param number_of_laps := 10;
 
 # sec
 param tyre_change_time := 21;

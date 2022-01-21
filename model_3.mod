@@ -63,6 +63,11 @@ for{stage in stages, tyre in tyre_compounds: use[stage, tyre]}
         printf "%s-", tyre;
     }
 }
-printf "Finish\n\nTotal time: %g second\n\n", Total_time + (number_of_stages - 1) * tyre_change_time;
+printf "Finish\n\nLaps where there is a tyre change:\n";
+for{stage1 in stages: stage1 != number_of_stages}
+{
+    printf "%s\n", sum{stage2 in stages: stage2 <= stage1} stage_length[stage2];
+}
+printf "\nTotal time: %g second\n\n", Total_time + (number_of_stages - 1) * tyre_change_time;
 
 end;
