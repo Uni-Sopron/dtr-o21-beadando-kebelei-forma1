@@ -1,1 +1,1 @@
-param number_of_stages := 3;
+param number_of_tyre_changes := 2;
