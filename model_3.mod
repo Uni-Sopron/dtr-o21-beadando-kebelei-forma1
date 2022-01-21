@@ -26,7 +26,7 @@ s.t. Race_length:
 
 s.t. Max_tyre_compound_life_time{stage in stages, tyre in tyre_compounds}:
 # If use[stage, tyre], then stage_length[stage] <= tyre_compounds_life_time[tyre]
-    stage_length[stage] <= tyre_compounds_life_time[tyre] + number_of_stages * (1 - use[stage, tyre]); # M = number_of_stages
+    stage_length[stage] <= tyre_compounds_life_time[tyre] + number_of_laps * (1 - use[stage, tyre]); # M = number_of_laps
     
 s.t. Add_value_to_used_compound_1{tyre in tyre_compounds}:
 # If sum{stage in stages} use[stage, tyre] == 0, then used_compound[tyre] = 0
