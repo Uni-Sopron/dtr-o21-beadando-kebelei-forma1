@@ -14,7 +14,7 @@ param M := 10000;
 
 # Variables
 var use{stages, tyre_compounds} binary;
-var stage_length{stages} integer >= 0;
+var stage_length{stages} integer >= 1;
 var used_compound{tyre_compounds} binary;
 var stage_time{stages} >= 0;
 
@@ -24,9 +24,6 @@ s.t. One_tyre_compound_in_each_stage{stage in stages}:
 
 s.t. Race_length:
     sum{stage in stages} stage_length[stage] = number_of_laps;
-
-s.t. Max_stage_length{stage in stages}:
-    stage_length[stage] >= 1;
 
 s.t. Max_tyre_compound_life_time{stage in stages, tyre in tyre_compounds}:
 # If use[stage, tyre], then stage_length[stage] <= tyre_compounds_life_time[tyre]
