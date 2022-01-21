@@ -58,6 +58,6 @@ for{lap in laps, tyre in tyre_compounds: use[lap, tyre]}
 {
     printf "%s-", tyre;
 }
-printf "Finish\n\nTotal time: %g\n\n", Total_time;
+printf "Finish\n\nTotal time: %g second\n\n", Total_time;
 
 end;
