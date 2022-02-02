@@ -53,7 +53,7 @@ minimize Total_time:
     + sum{lap in laps}tyre_change[lap] * tyre_change_time;
 
 solve;
-printf "\nLap tyres:\nStart-";
+printf "Lap tyres:\nStart-";
 for{lap in laps, tyre in tyre_compounds: use[lap, tyre]}
 {
     printf "%s-", tyre;
@@ -63,6 +63,6 @@ for{lap in laps: tyre_change[lap]}
 {
     printf "%s\n", lap;
 }
-printf "\nTotal time: %g second\n\n", Total_time;
+printf "\nTotal time: %g second", Total_time;
 
 end;

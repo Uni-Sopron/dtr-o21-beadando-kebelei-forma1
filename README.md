@@ -48,7 +48,7 @@ It is pretty slow and doesn't deal with the time loss from the tyre degradation.
 ### How to start
 
 ```bash
-glpsol -m model_1.mod -d basic_data.dat
+glpsol -m model_1.mod -d basic_data.dat -y output.out
 ```
 
 ## Model 2
@@ -57,7 +57,7 @@ The improved version of Model 1. It's very slow but it's advantage, that it deal
 ### How to start
 
 ```bash
-glpsol -m model_2.mod -d basic_data.dat -d degradation.dat
+glpsol -m model_2.mod -d basic_data.dat -d degradation.dat -y output.out
 ```
 
 ## Model 3
@@ -66,5 +66,5 @@ Extremly fast. It doesn't deal with the time loss from tyre degradation. The num
 ### How to start
 
 ```bash
-glpsol -m model_3.mod -d basic_data.dat -d tyre_change.dat
+glpsol -m model_3.mod -d basic_data.dat -d tyre_change.dat -y output.out
 ```
